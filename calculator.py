@@ -1,5 +1,7 @@
 import tkinter as tk
 
+print('branch_test')
+
 dis_value = 0
 operator = {'+':1, '-':2, '/':3, '*':4, 'C':5, '=':6}
 stoValue = 0
