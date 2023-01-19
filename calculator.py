@@ -74,10 +74,10 @@ str_value.set(str(dis_value))
 dis = tk.Entry(win, textvariable=str_value, justify='right', bg = 'black',fg='red')
 dis.grid(column=0, row=0, columnspan=4, ipadx=80, ipady=30)
 
-calItem = [['1','2','3','4'],
-           ['5', '6', '7', '8'],
-           ['9', '0', '+', '-'],
-           ['/', '*', 'C', '=']]
+calItem = [['1','2','3','4', '5'],
+           ['6', '7', '8','9','0'],
+           ['+', '-','/','*','C'],
+           ['=','root', 'square', 'log', '=']]
 
 for i,items in enumerate(calItem):
     for k,item in enumerate(items):
@@ -85,7 +85,10 @@ for i,items in enumerate(calItem):
             color = int(item)
             color = 'black'
         except:
-            color = 'green'
+            if item in ['-','*','=','square',"="]:
+                color = 'red'
+            else:
+                color = 'green'
         bt = tk.Button(win, 
             text=item, 
             width=10, 
