@@ -26,7 +26,6 @@ def ClearValue():
 ### + ~ = 연산자를 클릭했을때
 def OperatorClick(value):
     # print('명령 ', value)
-
     global dis_value, operator, stoValue, opPre
     
     #value의 값에 따라 숫자로 연산자를 변경한다.(+는 1로, -는 2로..)
@@ -64,7 +63,6 @@ def OperatorClick(value):
         dis_value = 0
         stoValue = 0
         opPre = 0
-
     else:
         ClearValue()
 
@@ -77,8 +75,7 @@ def ButtonClick(value):
         NumberClick(value)     #정수인 경우 NumberClick( )를 호출
     except:
         OperatorClick(value)    #정수가 아닌 연산자인 경우 여기로!!
-
-
+        
 win = tk.Tk()
 win.title('계산시')
 
@@ -87,10 +84,10 @@ str_value.set(str(dis_value))
 dis = tk.Entry(win, textvariable=str_value, justify='right', bg = 'black',fg='red')
 dis.grid(column=0, row=0, columnspan=4, ipadx=80, ipady=30)
 
-calItem = [['1','2','3','4'],
-           ['5', '6', '7', '8'],
-           ['9', '0', '+', '-'],
-           ['/', '*', 'C', '=']]
+calItem = [['1','2','3','4', '5'],
+           ['6', '7', '8','9','0'],
+           ['+', '-','/','*','C'],
+           ['=','root', 'square', 'log', '=']]
 
 for i,items in enumerate(calItem):
     for k,item in enumerate(items):
@@ -98,7 +95,10 @@ for i,items in enumerate(calItem):
             color = int(item)
             color = 'black'
         except:
-            color = 'green'
+            if item in ['-','*','=','square',"="]:
+                color = 'red'
+            else:
+                color = 'green'
         bt = tk.Button(win, 
             text=item, 
             width=10, 
