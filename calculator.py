@@ -1,6 +1,5 @@
 import tkinter as tk
-
-print('branch_test')
+import os
 
 dis_value = 0
 operator = {'+':1, '-':2, '/':3, '*':4, 'C':5, '=':6}
@@ -27,6 +26,7 @@ def ClearValue():
 ### + ~ = 연산자를 클릭했을때
 def OperatorClick(value):
     # print('명령 ', value)
+
     global dis_value, operator, stoValue, opPre
     
     #value의 값에 따라 숫자로 연산자를 변경한다.(+는 1로, -는 2로..)
@@ -50,11 +50,21 @@ def OperatorClick(value):
             dis_value = stoValue / dis_value
         if opPre == 4: # *
             dis_value = stoValue * dis_value
-        
+
+        if 'log.txt' in os.listdir():
+            f = open('log.txt', 'a')
+        else:
+            f = open('log.txt', 'w')
+
+        print(str(dis_value))
+        f.write(str(dis_value) + '\n')
+        f.close()
+
         str_value.set(str(dis_value)) #최종 결과 값을 출력한다.
         dis_value = 0
         stoValue = 0
         opPre = 0
+
     else:
         ClearValue()
 
@@ -67,7 +77,8 @@ def ButtonClick(value):
         NumberClick(value)     #정수인 경우 NumberClick( )를 호출
     except:
         OperatorClick(value)    #정수가 아닌 연산자인 경우 여기로!!
-        
+
+
 win = tk.Tk()
 win.title('계산시')
 
