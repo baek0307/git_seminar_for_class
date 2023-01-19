@@ -1,4 +1,5 @@
 import tkinter as tk
+import os
 
 dis_value = 0
 operator = {'+':1, '-':2, '/':3, '*':4, 'C':5, '=':6}
@@ -48,7 +49,16 @@ def OperatorClick(value):
             dis_value = stoValue / dis_value
         if opPre == 4: # *
             dis_value = stoValue * dis_value
-        
+
+        if 'log.txt' in os.listdir():
+            f = open('log.txt', 'a')
+        else:
+            f = open('log.txt', 'w')
+
+        print(str(dis_value))
+        f.write(str(dis_value) + '\n')
+        f.close()
+
         str_value.set(str(dis_value)) #최종 결과 값을 출력한다.
         dis_value = 0
         stoValue = 0
